@@ -40,6 +40,7 @@
 package net.java.cargotracker.domain.model.cargo;
 
 import java.io.Serializable;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,11 +49,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import org.apache.commons.lang3.Validate;
+
 import net.java.cargotracker.domain.model.handling.HandlingEvent;
 import net.java.cargotracker.domain.model.handling.HandlingHistory;
 import net.java.cargotracker.domain.model.location.Location;
 import net.java.cargotracker.domain.shared.DomainObjectUtils;
-import org.apache.commons.lang3.Validate;
 
 /**
  * A Cargo. This is the central class in the domain model, and it is the root of
@@ -94,7 +97,7 @@ import org.apache.commons.lang3.Validate;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Cargo.findAll",
-            query = "Select c from Cargo c"),
+            query = "Select c from Cargo c join fetch c.itinerary.legs"),
     @NamedQuery(name = "Cargo.findByTrackingId",
             query = "Select c from Cargo c where c.trackingId = :trackingId"),
     @NamedQuery(name = "Cargo.getAllTrackingIds",
