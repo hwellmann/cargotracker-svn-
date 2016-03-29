@@ -312,11 +312,6 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <fractions>
-                                <fraction>batch-jberet</fraction>
-                                <fraction>jaxrs</fraction>
-                                <fraction>undertow</fraction>
-                            </fractions>
                             <mainClass>net.java.cargotracker.application.Main</mainClass>
                         </configuration>
                     </plugin>
